@@ -44,24 +44,24 @@
   ```
 
 **Orders**
-- `New, Accepted, Prepared, Sent orders` <br/> https://restoranpanel.com/api/orders/todayOrders
-- `Ignored and complated orders` <br/> https://restoranpanel.com/api/orders/oldOrders
+- `New, Accepted, Prepared, Sent orders` <br/> ```https://restoranpanel.com/api/orders/todayOrders```
+- `Ignored and complated orders` <br/> ```https://restoranpanel.com/api/orders/oldOrders```
 
 
-- `Order details` <br/> https://restoranpanel.com/api/orders/order/{order_id}
-- `Print the order details` <br/>https://restoranpanel.com/api/orders/print/{order_id}
+- `Order details` <br/> ```https://restoranpanel.com/api/orders/order/{order_id}```
+- `Print the order details` <br/>```https://restoranpanel.com/api/orders/print/{order_id}```
 
-- `Make the order Accepted` <br/> https://restoranpanel.com/api/orders/acceptOrder/{order_id}
-- `Make the order Prepared` <br/> https://restoranpanel.com/api/orders/prepareOrder/{order_id}
-- `Make the order Sent` <br/> https://restoranpanel.com/api/orders/sendOrder/{order_id}
-- `Make the order Comleted` <br/> https://restoranpanel.com/api/orders/completeOrder/{order_id}
-- `Make the order Cancel` <br/> https://restoranpanel.com/api/orders/cancel/{order_id}
+- `Make the order Accepted` <br/> ```https://restoranpanel.com/api/orders/acceptOrder/{order_id}```
+- `Make the order Prepared` <br/> ```https://restoranpanel.com/api/orders/prepareOrder/{order_id}```
+- `Make the order Sent` <br/> ```https://restoranpanel.com/api/orders/sendOrder/{order_id}```
+- `Make the order Comleted` <br/> ```https://restoranpanel.com/api/orders/completeOrder/{order_id}```
+- `Make the order Cancel` <br/> ```https://restoranpanel.com/api/orders/cancel/{order_id}```
 
 
 
 **Index**
 
-- `General Informations of User` <br/> https://restoranpanel.com/api
+- `General Informations of User` <br/> ```https://restoranpanel.com/api```
 
 **Index Return Object**
 
@@ -212,18 +212,22 @@
     }
 ```
 
-# USER STATUS'
+# USER STATUS
 
 - RESTAURANT_MAIN <br/> ``` superOp = 0 ```
-- RESTAURANT_BRANCH` <br/>  ``` superOp = 1 ```
-- SUPER_VISOR` <br/> ``` superOp = 3```
+- RESTAURANT_BRANCH <br/>  ``` superOp = 1 ```
+- SUPER_VISOR <br/> ``` superOp = 3```
 
 
 **RESTAURANT_MAIN**
 
 If ```superOp == 0``` its mean that this account is an main restaurant account. So this account may be have more then one branches.In this case, restaurant may track all the branches and orders without do any interactivity like accept, cancel etc...
 
-As an addition ```$data->SuperOp->superVisorBrances``` list should be listed. So account owner can see which branches s/he is tracking. ```$data->SuperOp->todayOrdersSuperOp```, ```$data->SuperOp->todayOrdersPriceSuperOp```, ```$data->SuperOp->weekOrdersSuperOp```, ```$data->SuperOp->weekOrdersPriceSuperOp```, ```$data->SuperOp->monthOrdersPriceSuperOp``` are represent the value's of branches. For example; 
+As an addition ```$data->SuperOp->superVisorBrances``` list should be listed. So account owner can see which branches s/he is tracking.
+
+***RESTAURANT_MAIN STATISTICS***
+
+```$data->SuperOp->todayOrdersSuperOp```, ```$data->SuperOp->todayOrdersPriceSuperOp```, ```$data->SuperOp->weekOrdersSuperOp```, ```$data->SuperOp->weekOrdersPriceSuperOp```, ```$data->SuperOp->monthOrdersPriceSuperOp```,```$data->SuperOp->monthOrdersSuperOp``` are represent the value's of branches' statistics. For example; 
 
 ``` 
 "weekOrdersPriceSuperOp": {
@@ -235,7 +239,18 @@ As an addition ```$data->SuperOp->superVisorBrances``` list should be listed. So
 
 That show up the 934 ID branche's weekly order price is 24.51. To catch the name of branch, you need the check the id in  the list of    ```$data->SuperOp->superVisorBrances```
         
- 
+
+The Turkish translation's of the statistic method names are;
+```$data->SuperOp->todayOrdersSuperOp``` => Günlük toplam sipariş adeti <br>
+```$data->SuperOp->todayOrdersPriceSuperOp``` => Günlük toplam ciro <br>
+```$data->SuperOp->weekOrdersSuperOp``` => Haftalık toplam sipariş adeti <br>
+```$data->SuperOp->weekOrdersPriceSuperOp``` => Haftalık toplam ciro <br>
+```$data->SuperOp->monthOrdersPriceSuperOp``` => Aylık toplam ciro <br>
+```$data->SuperOp->monthOrdersSuperOp``` => Aylık toplam sipariş adeti <br>
+
+
+
+
 
 and ```$data->SuperOp->todayOrdersPrice``` represent the value of total amount of the order's prices.
 
@@ -244,8 +259,35 @@ and ```$data->SuperOp->todayOrdersPrice``` represent the value of total amount o
 
 If ```superOp == 1``` its mean that this is just one branche control unit. So the account owner can accept, prepare, send, complate and cancel the orders and can show the notes and make print the order details. 
 
+
+***RESTAURANT_BRANCH STATISTICS***
+
+The logic is same with the statistics of ```superOp == 1``` But the fields are different. 
+
+The Turkish translation's of the statistic method names are;
+```$data->todayOrders``` => Günlük toplam sipariş adeti <br>
+```$data->todayOrdersCash``` => Günlük toplam sipariş / Nakit <br>
+```$data->todayOrdersCredit``` => Günlük toplam sipariş / Kapıda Kredi Kartı <br>
+```$data->todayOrdersOnline``` => Günlük toplam sipariş / On-line Ödeme <br>
+
+
+```$data->monthOrders``` => Aylık toplam sipariş adeti  <br>
+```$data->monthOrdersPrice``` => Aylık toplam ciro  <br>
+
+
+
+
 **SUPER_VISOR**
 
 If ```superOp == 3``` its mean that the account is and super visor account and it may be include several restaurant and several branches. This account's behaviour is same with ```superOp == 0```
 
+
+***SUPER_VISOR STATISTICS***
+
+The logic is same with the statistics of ```superOp == 1``` And the fields are same too. 
+
+
+# ANNOUNCEMENTS
+
+Announcement list are coming from ```https://restoranpanel.com/api``` endpoing as $data->announcements. This will be show for all the user types. 
 
