@@ -219,6 +219,7 @@
 - SUPER_VISOR <br/> ``` superOp = 3```
 
 
+
 **RESTAURANT_MAIN**
 
 If ```superOp == 0``` its mean that this account is an main restaurant account. So this account may be have more then one branches.In this case, restaurant may track all the branches and orders without do any interactivity like accept, cancel etc...
@@ -249,10 +250,10 @@ The Turkish translation's of the statistic method names are;
 ```$data->SuperOp->monthOrdersSuperOp``` => Aylık toplam sipariş adeti <br>
 
 
-
-
-
 and ```$data->SuperOp->todayOrdersPrice``` represent the value of total amount of the order's prices.
+
+
+
 
 **RESTAURANT_BRANCH**
 
@@ -277,6 +278,8 @@ The Turkish translation's of the statistic method names are;
 
 
 
+
+
 **SUPER_VISOR**
 
 If ```superOp == 3``` its mean that the account is and super visor account and it may be include several restaurant and several branches. This account's behaviour is same with ```superOp == 0```
@@ -285,6 +288,8 @@ If ```superOp == 3``` its mean that the account is and super visor account and i
 ***SUPER_VISOR STATISTICS***
 
 The logic is same with the statistics of ```superOp == 1``` And the fields are same too. 
+
+
 
 
 # ANNOUNCEMENTS
